@@ -1,0 +1,217 @@
+/* Global Settings */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    line-height: 1.6;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #1f1f1f;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .logo a {
+    color: #e0e0e0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+nav ul li a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #55afeb;
+}
+
+nav form button {
+    background-color: #55afeb;
+    color: #121212;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+nav form button:hover {
+    background-color: #3700b3;
+}
+
+/* Hero Section */
+header.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('../images/hero-bg.jpg') no-repeat center center/cover;
+    color: #fff;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+header.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+header.hero p {
+    font-size: 1.2rem;
+}
+
+/* Category Section */
+.categories {
+    background-color: #1f1f1f;
+    padding: 2rem;
+    text-align: center;
+}
+
+.categories h2 {
+    color: #55afeb;
+    margin-bottom: 1.5rem;
+}
+
+.category-list {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.category-item {
+    background-color: #333;
+    color: #e0e0e0;
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.category-item:hover {
+    background-color: #55afeb;
+}
+
+/* Featured Books & Other Sections */
+.featured-books,
+.recommendations,
+.popular-books,
+.recently-viewed {
+    background-color: #1f1f1f;
+    padding: 2rem 2rem;
+}
+
+h2 {
+    color: #55afeb;
+    margin-bottom: 1.5rem;
+}
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.book-card {
+    background-color: #333;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.book-card h3 {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+}
+
+.book-card p {
+    font-size: 0.9rem;
+    color: #b3b3b3;
+}
+
+.book-card .btn {
+    display: inline-block;
+    background-color: #55afeb;
+    color: #121212;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.book-card .btn:hover {
+    background-color: #3700b3;
+}
+
+/* Footer */
+footer {
+    background-color: #1f1f1f;
+    color: #b3b3b3;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.footer-links {
+    margin-top: 1rem;
+}
+
+.footer-links a {
+    color: #55afeb;
+    margin: 0 1rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #3700b3;
+}
+
+/* Buttons and Hover Effects */
+button, .btn {
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+button:hover, .btn:hover {
+    background-color: #3700b3;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .book-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    header.hero {
+        padding: 2rem 1rem;
+    }
+
+    header.hero h1 {
+        font-size: 2rem;
+    }
+}

@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name ="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Books in Category</title>
+        <link rel="stylesheet" href="{% static 'css/Category_books.css' %}">
+    </head>
+    <body>
+        <h1>Books in selected Category</h1>
+        {% if book_list %}
+        <ul>
+            {%for book in book_list %}
+            <li>
+                <span class="book-title">{{book.title}}</span> by 
+                <span class="book-author">{{book.author}}</span>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No books found in this category.</p>
+        {% endif %}
+    </body>
+</html>

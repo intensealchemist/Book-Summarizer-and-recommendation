@@ -1,0 +1,92 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body Styling */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f7fa;
+}
+
+/* Container Styling */
+form {
+    width: 100%;
+    max-width: 400px;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+/* Input Styling */
+form p {
+    margin-bottom: 1rem;
+}
+
+form label {
+    display: block;
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 0.3rem;
+}
+
+form input[type="text"],
+form input[type="password"] {
+    width: 100%;
+    padding: 0.8rem;
+    margin-top: 0.2rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #333;
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Button Styling */
+button {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Text */
+form p {
+    font-size: 0.9rem;
+}
+
+form small {
+    color: #666;
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+}

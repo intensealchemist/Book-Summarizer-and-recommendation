@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ user.username }}'s Profile</title>
+    <link rel="stylesheet" href="{% static 'css/user_profile.css' %}">
+</head>
+<body>
+    {% if user.is_authenticated %}
+    <div class="profile-container">
+        <h2>{{ user.username }}'s Profile</h2>
+        <div class="profile-details">
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Joined:</strong> {{ user.date_joined|date:"M d, Y" }}</p>
+            {% if user.userprofile %}
+                <p><strong>Bio:</strong> {{ user.userprofile.bio }}</p>
+                <p><strong>Location:</strong> {{ user.userprofile.location }}</p>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+</body>
+</html>

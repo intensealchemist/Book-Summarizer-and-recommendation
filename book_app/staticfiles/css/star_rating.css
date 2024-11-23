@@ -1,0 +1,22 @@
+.star-rating {
+    display: flex;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.star {
+    font-size: 2rem;
+    color: #ccc; /* Default gray */
+}
+
+.star.selected,
+.star:hover,
+.star:hover ~ .star {
+    color: #FFD700; /* Highlighted gold */
+}
+
+.rating-feedback {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: green;
+}

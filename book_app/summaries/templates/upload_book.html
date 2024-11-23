@@ -1,0 +1,32 @@
+<!-- upload_book.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Book</title>
+</head>
+<body>
+    <h2>Upload Book</h2>
+    <form method="post" enctype="multipart/form-data" id="uploadForm">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+    <p id="message"></p>
+    <script>
+        document.getElementById('uploadForm').onsubmit = async function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const response = await fetch("{% url 'upload_book' %}", {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'
+                }
+            });
+            const result = await response.json();
+            document.getElementById('message').innerText = result.message || result.error;
+        };
+    </script>
+</body>
+</html>

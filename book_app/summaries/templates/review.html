@@ -1,0 +1,15 @@
+<form method="POST" action="{% url 'submit_review' book.id %}">
+    {% csrf_token %}
+    <label for="star_rating">Rate this book:</label>
+    <select name="star_rating" id="star_rating">
+        <option value="1">1 Star</option>
+        <option value="2">2 Stars</option>
+        <option value="3" selected>3 Stars</option>
+        <option value="4">4 Stars</option>
+        <option value="5">5 Stars</option>
+    </select>
+    <textarea name="review_text" placeholder="Write your review here..."></textarea>
+    <button type="submit">Submit Review</button>
+    <p>Average Rating: {{ book.reviews.aggregate(avg_rating=Avg('star_rating'))['avg_rating']|default:"No ratings yet" }}</p>
+
+</form>

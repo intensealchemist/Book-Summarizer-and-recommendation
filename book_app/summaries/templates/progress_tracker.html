@@ -1,0 +1,26 @@
+<!-- progress_tracker.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Progress</title>
+</head>
+<body>
+    <div class="progress-tracker-section">
+        <h2>Your Progress</h2>
+        {% if books %}
+            <ul>
+                {% for book in books %}
+                    <li>
+                        <h3>{{ book.title }}</h3>
+                        <p>{{ book.author }}</p>
+                        <p>Status: {{ book.get_status_display }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No books found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ book.title }}</title>
+    <link rel="stylesheet" href="{% static 'css/book_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'css/star_rating.css' %}">
+</head>
+<body>
+    <div class="container">
+        {% if book.cover_image %}
+            <img src="{{ book.cover_image.url }}" alt="{{ book.title }} cover" class="book-cover" />
+        {% else %}
+            <p>No cover image available.</p>
+        {% endif %}
+        <h1><strong>Book Name:</strong> <a href="{% url 'view_pdf' book.id %}" class="btn">{{ book.title }}</a></h1>
+        <p><strong>Author:</strong> {{ book.author }}</p>
+        <p><strong>Summary:</strong> {{ book.summary|default:"No summary available" }}</p>
+        <p><strong>Average Rating:</strong> 
+            {{ average_rating }}/5
+        </p>
+
+        <a href="{% url 'view_pdf' book.id %}" class="btn">Read Book</a><br>
+        <a href="{% url 'all_books' %}" class="back-link">Back to Book List</a>
+        
+        <!-- Summarize Button -->
+        <form action="{% url 'summarize_book' book.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn">Summarize</button>
+        </form>
+        <h3>Rate this book:</h3>
+        {% csrf_token %}
+        <div class="star-rating" data-book-id="{{ book.id }}" id="star-rating">
+            {% for i in rating_range %}
+            <span class="star" data-value="{{ i }}">&#9733;</span>
+            {% endfor %}
+        </div>
+        <p class="rating-feedback" id="rating-message"></p>
+
+        <h3>Reviews:</h3>
+        <ul>
+            {% for review in book.reviews.all %}
+            <li>
+                <strong>{{ review.user.username }}</strong>: 
+                {{ review.review_text|default:"No review provided." }} 
+                (Rating: {{ review.star_rating }}/5)
+            </li>
+            {% empty %}
+            <p>No reviews yet. Be the first to rate and review this book!</p>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'home' %}" class="back-link">Home</a>
+    </div>
+    <script src="{% static 'js/star_rating.js' %}"></script>
+</body>
+</html>

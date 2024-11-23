@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - {{ profile.user.username }}</title>
+
+    <!-- Link the external CSS file -->
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    
+    <!-- Google Fonts for typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Welcome to Your Dashboard, {{ profile.user.username }}!</h1>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar: User Profile Info -->
+        <div class="sidebar">
+            <h2>Your Profile</h2>
+            <div class="profile-info">
+                <p><strong>Username:</strong> {{ profile.user.username }}</p>
+                <p><strong>Bio:</strong> {{ profile.bio|default:"No bio provided." }}</p>
+                <p><strong>Location:</strong> {{ profile.location|default:"Unknown" }}</p>
+            </div>
+            <a href="{% url 'user_profile' username=user.username  %}">Edit Profile</a><br>
+            <a href="{% url 'home' %}">Home</a>
+        </div>
+    </div>
+    
+
+
+        <!-- Main Content: Activities and Updates -->
+        <div class="content">
+            <h2>Recent Activities</h2>
+            <ul class="activities">
+                {% for activity_item in activities %}
+                    {% with activity_item.activity as activity %}
+                        <li>
+                            {% if activity_item.type == "review" %}
+                                <strong>Review:</strong> Reviewed "{{ activity.book.title }}" 
+                                on {{ activity.created_at|date:"M d, Y H:i" }}.
+                            {% elif activity_item.type == "bookmark" %}
+                                <strong>Bookmark:</strong> Bookmarked "{{ activity.book.title }}" 
+                                at "{{ activity.location }}" on {{ activity.id|date:"M d, Y H:i" }}.
+                            {% elif activity_item.type == "progress" %}
+                                <strong>Progress:</strong> Marked "{{ activity.book.title }}" as 
+                                "{{ activity.get_status_display }}" on {{ activity.id|date:"M d, Y H:i" }}.
+                            {% endif %}
+                        </li>
+                    {% endwith %}
+                {% empty %}
+                    <li>No recent activities to show.</li>
+                {% endfor %}
+            </ul>
+            
+
+            <!-- Placeholder for future features, such as book recommendations -->
+            <h2>Book Recommendations</h2>
+            <p>No recommendations available yet. Check back soon!</p>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Book Summarizer | <a href="{% url 'home' %}">Home</a></p>
+    </footer>
+
+</body>
+</html>

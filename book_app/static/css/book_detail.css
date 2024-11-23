@@ -1,0 +1,106 @@
+/* Global Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #101216; /* Dark blue-gray */
+    color: #e2e8f0; /* Light gray-blue */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container */
+.container {
+    background-color: #1c1e24; /* Dark charcoal */
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    border: 1px solid #2d3748; /* Dark slate for subtle border */
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #00b4d8; /* Vibrant teal */
+}
+
+p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #a0aec0; /* Muted gray-blue for less emphasis */
+}
+
+strong {
+    color: #e2e8f0; /* Light blue-gray for labels */
+}
+
+/* Links and Buttons */
+a {
+    text-decoration: none;
+    color: #00b4d8; /* Teal */
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #ff6700; /* Coral for hover */
+}
+
+.back-link {
+    font-size: 1rem;
+    margin-top: 2rem;
+    display: inline-block;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #00b4d8; /* Teal */
+    color: #101216; /* Dark background for contrast */
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: 1rem;
+    margin: 1rem 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+    background-color: #ff6700; /* Coral hover */
+    transform: translateY(-3px); /* Subtle button lift */
+}
+
+/* Summarize Button */
+button.btn {
+    background-color: #00b4d8;
+    border: none;
+    cursor: pointer;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    color: #101216;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button.btn:hover {
+    background-color: #ff6700;
+    transform: translateY(-3px); /* Button lift on hover */
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    .btn, button.btn {
+        font-size: 0.9rem;
+    }
+}

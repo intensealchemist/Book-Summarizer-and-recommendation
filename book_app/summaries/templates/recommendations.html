@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Recommendations</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">  <!-- Assuming you have a CSS file -->
+</head>
+<body>
+
+    <div class="container">
+        <h1>Recommended Books</h1>
+  
+  {% if recommended_books %}
+    <div class="recommended-books">
+      {% for book in recommended_books %}
+        <div class="book-item">
+          <h3>{{ book.title }}</h3>
+          <p>{{ book.author }}</p>
+          <p>{{ book.description }}</p>
+          <a href="{% url 'book_detail' book.id %}">View Details</a>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No recommendations available.</p>
+  {% endif %}
+
+    </div>
+
+</body>
+</html>

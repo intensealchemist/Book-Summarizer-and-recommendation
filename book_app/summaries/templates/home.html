@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Summarizer and recommendation web app - Home</title>
+    <link rel="stylesheet" href="{% static 'css/HomePage.css' %}">
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <div class="logo"><a href="{% url 'home' %}">Book Summarizer</a></div>
+    <ul>
+        <li><a href="{% url 'all_books' %}">All Books</a></li>
+        <li><a href="{% url 'search_books' %}">Search</a></li>
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'recommendations' %}">Recommendations</a></li>
+            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li><a href="{% url 'user_profile' username=user.username %}">Profile</a></li>
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+
+        {% else %}
+            <li><a href="{% url 'register' %}">Register</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+
+<!-- Hero Section -->
+{% if user.is_authenticated %}
+<header class="hero">
+    <h1>Welcome to Book Summarizer, {{ profile.user.username }}</h1>
+    <p>Your one-stop platform for book recommendations, reviews, and personalized reading experiences.</p>
+</header>
+{% else %}
+<header class="hero">
+    <h1>Welcome to Book Summarizer</h1>
+    <p>Your one-stop platform for book recommendations, reviews, and personalized reading experiences.</p>
+</header>
+{% endif %}
+
+<!-- Category Section -->
+<section class="categories">
+    <h2>Explore by Category</h2>
+    <div class="category-list">
+        {% for category in categories %}
+            <a href="{% url 'category_books' category.id %}" class="category-item">{{ category.name }}</a>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Featured Books -->
+<section class="featured-books">
+    <h2>Featured Books</h2>
+    <div class="book-grid">
+        {% for book in featured_books %}
+            <div class="book-card">
+                <h3>{{ book.title }}</h3>
+                <p>by {{ book.author }}</p>
+                <p>{{ book.summarize }}</p>
+                <a href="{% url 'book_detail' book.id %}" class="btn">Read More</a>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Recommendations for Logged-In Users -->
+{% if user.is_authenticated %}
+<section class="recommendations">
+    <h2>Recommended for You</h2>
+    <div class="book-grid">
+        {% if recommended_books %}
+            <div class="book-card">
+                {% for book in recommended_books %}
+                    <li>
+                        <strong>{{ book.title }}</strong> by {{ book.author }}</li>
+                        {% if book.id %}
+                            <a href="{% url 'book_detail' book.id %}" class="btn">Read More</a>
+                        {% endif %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No recommended books available.</p>
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+
+<!-- Popular Books -->
+<section class="popular-books">
+    <h2>Popular Books</h2>
+    <div class="book-grid">
+        {% for book in popular_books %}
+            <div class="book-card">
+                <h3>{{ book.title }}</h3>
+                <p>by {{ book.author }}</p>
+                <a href="{% url 'book_detail' book.id %}" class="btn">Read More</a>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Recently Viewed (if logged in) -->
+{% if user.is_authenticated %}
+<section class="recently-viewed">
+    <h2>Your Recently Viewed Books</h2>
+    <div class="book-grid">
+        {% for book in recently_viewed %}
+            <div class="book-card">
+                <h3>{{ book.title }}</h3>
+                <p>by {{ book.author }}</p>
+                <a href="{% url 'book_detail' book.id %}" class="btn">Read More</a>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 Book Summarizer. All rights reserved.</p>
+    <div class="footer-links">
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Terms of Service</a>
+    </div>
+</footer>
+<script src="{% static 'js/homepage.js' %}"></script>
+</body>
+</html>

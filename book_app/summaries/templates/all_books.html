@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Books</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/all_books.css' %}">
+</head>
+<body>
+    <h1>All Books</h1>
+    <div class="books-container">
+        {% for book in books %}
+        <div class="book-card">
+            <h2>{{ book.title }}</h2>
+            <p><strong>Author:</strong> {{ book.author }}</p>
+            <p class="description">{{ book.description|default:"No description available." }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
